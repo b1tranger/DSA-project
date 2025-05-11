@@ -1,0 +1,9 @@
+https://youtu.be/02KJouOjQ0c
+
+
+A tutorial on how to get GDExtension up and running.
+
+NOTE: The code and SConstruct file I have provided are 95% similar to the material on the Godot docs. If you prefer a written guide more, check out the Godot docs: https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html
+
+godot-cpp repo: https://github.com/godotengine/godot-cpp
+SConstruct file: https://docs.godotengine.org/en/stable/_downloads/45a3f5e351266601b5e7663dc077fe12/SConstruct
