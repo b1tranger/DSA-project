@@ -10,7 +10,7 @@
 
 // Namespaces
 using namespace godot;
-using namespace jenova::sdk;
+using namespace dsadsajenova::sdk;
 
 // Jenova Script Block Start
 JENOVA_SCRIPT_BEGIN
