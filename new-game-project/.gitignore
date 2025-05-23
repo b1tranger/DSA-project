@@ -1,6 +1,0 @@
-# Godot 4+ Jenova specific ignores
-.vs/
-.vscode/
-.godot/
-Jenova/
-/vc*.pdb
