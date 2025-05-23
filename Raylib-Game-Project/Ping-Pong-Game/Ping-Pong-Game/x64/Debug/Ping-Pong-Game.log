@@ -2,10 +2,7 @@
 E:\Git_WIP\DSA-project\Raylib-Game-Project\Ping-Pong-Game\Ping-Pong-Game\Ping-Pong-Game.cpp(12,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 E:\Git_WIP\DSA-project\Raylib-Game-Project\Ping-Pong-Game\Ping-Pong-Game\Ping-Pong-Game.cpp(12,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 E:\Git_WIP\DSA-project\Raylib-Game-Project\Ping-Pong-Game\Ping-Pong-Game\Ping-Pong-Game.cpp(12,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\Ping-Pong-Game\Ping-Pong-Game\Ping-Pong-Game.cpp(38,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\Ping-Pong-Game\Ping-Pong-Game\Ping-Pong-Game.cpp(38,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\Ping-Pong-Game\Ping-Pong-Game\Ping-Pong-Game.cpp(38,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\Ping-Pong-Game\Ping-Pong-Game\Ping-Pong-Game.cpp(38,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\Ping-Pong-Game\Ping-Pong-Game\Ping-Pong-Game.cpp(47,64): warning C4305: 'argument': truncation from 'double' to 'float'
   Ping-Pong-Game.vcxproj -> E:\Git_WIP\DSA-project\Raylib-Game-Project\Ping-Pong-Game\x64\Debug\Ping-Pong-Game.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

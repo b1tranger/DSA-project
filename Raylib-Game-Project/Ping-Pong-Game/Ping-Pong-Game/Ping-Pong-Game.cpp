@@ -28,14 +28,23 @@ public:
 };
 
 class Paddle {
+protected:
+    void LimitMovement() {
+        if (y <= 0) {
+            y = 0;
+        }
+        if (y + height >= GetScreenHeight()) {
+            y = GetScreenHeight() - height;
+        }
+    }
+
 public:
     float x, y;
     float width, height;
     int speed;
 
     void Draw() {
-
-        DrawRectangle(x, y, width, height, WHITE);
+        DrawRectangleRounded(Rectangle{ x, y, width, height }, 0.8, 0, WHITE);
     }
 
     void Update() {
@@ -44,17 +53,9 @@ public:
         }
         if (IsKeyDown(KEY_DOWN)) {
             y = y + speed;
-
         }
-        if (y <= 0) {
-            y = 0;
-        }
-        if (y + height >= GetScreenHeight()) {
-            y = GetScreenHeight() - height;
-        }
-
+        LimitMovement();
     }
-
 };
 
 
@@ -86,20 +87,24 @@ int main()
     //Game Loop
     while (WindowShouldClose() == false) {
 
+        BeginDrawing();
+
+
         //updating
         ball.Update();
         player.Update();
 
-        BeginDrawing();
+        
 
         // Drawing
         ClearBackground(BLACK);
         DrawLine(screen_width / 2, 0, screen_width / 2, screen_height, WHITE);
         ball.Draw();
-        /*DrawCircle(screen_width/2, screen_height/2, 20, WHITE);*/
+        
+        //DrawCircle(screen_width/2, screen_height/2, 20, WHITE);
         DrawRectangle(10, screen_height / 2 - 60, 25, 120, WHITE);
-        DrawRectangle(screen_width - 25 - 10, screen_height / 2 - 60, 25, 120, WHITE);
-
+        //DrawRectangle(screen_width - 25 - 10, screen_height / 2 - 60, 25, 120, WHITE);
+        player.Draw();
 
         EndDrawing();
     }
