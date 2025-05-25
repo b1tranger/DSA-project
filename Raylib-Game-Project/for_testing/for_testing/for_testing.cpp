@@ -1,83 +1,68 @@
 #include "raylib.h"
 
-// Define Player struct
-struct Player
-{
-    Rectangle rect;
-    Vector2 speed; // x and y speed
-    bool canJump;
-};
-
-int main()
-{
+int main() {
     const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "My 2D Platformer");
+    InitWindow(screenWidth, screenHeight, "Juggling Game");
     SetTargetFPS(60);
 
-    // Player initialization
-    Player player;
-    player.rect = { 100.0f, 300.0f, 30.0f, 30.0f }; // x, y, width, height
-    player.speed = { 0.0f, 0.0f };
-    player.canJump = false;
+    // Paddle
+    float paddleWidth = 100;
+    float paddleHeight = 20;
+    float paddleX = screenWidth / 2 - paddleWidth / 2;
+    float paddleY = screenHeight - 50;
+    float paddleSpeed = 500;
 
-    // Physics constants
-    const float gravity = 800.0f; // Pixels per second squared
-    const float jumpSpeed = -400.0f; // Negative for upward movement
-    const float moveSpeed = 200.0f; // Horizontal movement speed
+    // Ball
+    Vector2 ballPos = { screenWidth / 2.0f, screenHeight / 2.0f };
+    Vector2 ballVel = { 200, 0 };
+    float ballRadius = 10;
+    float gravity = 400;
 
-    // Game loop
-    while (!WindowShouldClose())
-    {
-        // Update
-        //----------------------------------------------------------------------------------
-        float deltaTime = GetFrameTime(); // Time elapsed since last frame
+    int score = 0;
 
-        // Apply gravity
-        player.speed.y += gravity * deltaTime;
+    while (!WindowShouldClose()) {
+        float dt = GetFrameTime();
 
-        // Player horizontal movement
-        if (IsKeyDown(KEY_LEFT))
-        {
-            player.speed.x = -moveSpeed;
-        }
-        else if (IsKeyDown(KEY_RIGHT))
-        {
-            player.speed.x = moveSpeed;
-        }
-        else
-        {
-            player.speed.x = 0; // Stop horizontal movement if no key pressed
-        }
+        // Paddle Movement
+        if (IsKeyDown(KEY_LEFT)) paddleX -= paddleSpeed * dt;
+        if (IsKeyDown(KEY_RIGHT)) paddleX += paddleSpeed * dt;
 
-        // Player jump
-        if (IsKeyPressed(KEY_SPACE) && player.canJump)
-        {
-            player.speed.y = jumpSpeed;
-            player.canJump = false; // Prevent double jumping
+        // Clamp paddle
+        if (paddleX < 0) paddleX = 0;
+        if (paddleX > screenWidth - paddleWidth) paddleX = screenWidth - paddleWidth;
+
+        // Ball physics
+        ballVel.y += gravity * dt;
+        ballPos.x += ballVel.x * dt;
+        ballPos.y += ballVel.y * dt;
+
+        // Ball collision with paddle
+        if (ballPos.y + ballRadius >= paddleY &&
+            ballPos.x >= paddleX && ballPos.x <= paddleX + paddleWidth &&
+            ballVel.y > 0) {
+            ballVel.y *= -1;
+            score++;
         }
 
-        // Update player position
-        player.rect.x += player.speed.x * deltaTime;
-        player.rect.y += player.speed.y * deltaTime;
-
-        // Keep player within screen bounds (basic collision with bottom)
-        if (player.rect.y + player.rect.height >= screenHeight)
-        {
-            player.rect.y = screenHeight - player.rect.height;
-            player.speed.y = 0; // Stop vertical movement
-            player.canJump = true; // Allow jumping again
+        // Ball falls below screen
+        if (ballPos.y - ballRadius > screenHeight) {
+            // Reset
+            ballPos = { screenWidth / 2.0f, screenHeight / 2.0f };
+            ballVel = { 200, 0 };
+            score = 0;
         }
-        //----------------------------------------------------------------------------------
 
-        // Draw
-        //----------------------------------------------------------------------------------
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        DrawRectangleRec(player.rect, BLUE); // Draw the player as a blue rectangle
+
+        DrawRectangle(paddleX, paddleY, paddleWidth, paddleHeight, DARKGRAY);
+        DrawCircleV(ballPos, ballRadius, MAROON);
+
+        DrawText(TextFormat("Score: %d", score), 10, 10, 20, BLACK);
+
         EndDrawing();
-        //----------------------------------------------------------------------------------
     }
 
     CloseWindow();

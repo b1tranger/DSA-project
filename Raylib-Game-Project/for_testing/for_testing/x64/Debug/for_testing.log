@@ -1,4 +1,8 @@
 ﻿  for_testing.cpp
+E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(60,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(60,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(60,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(60,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   for_testing.vcxproj -> E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\x64\Debug\for_testing.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
