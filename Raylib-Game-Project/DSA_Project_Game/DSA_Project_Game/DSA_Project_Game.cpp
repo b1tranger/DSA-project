@@ -14,8 +14,14 @@ class ball {
 public:
     float x, y;
     int speed_x, speed_y;
+
     void Draw() {
         DrawCircle(x, y, radius, Red);
+
+    }
+
+    void Update() {
+
 
     }
 
