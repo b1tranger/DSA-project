@@ -1,8 +1,7 @@
 ﻿  DSA_Project_Game.cpp
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(60,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(60,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(60,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(60,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  DSA_Project_Game.vcxproj -> E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\x64\Debug\DSA_Project_Game.exe
-  'pwsh.exe' is not recognized as an internal or external command,
-  operable program or batch file.
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(54,9): error C2065: 'ballVel': undeclared identifier
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(54,22): error C2065: 'gravity': undeclared identifier
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(55,9): error C2065: 'ballPos': undeclared identifier
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(55,22): error C2065: 'ballVel': undeclared identifier
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(56,9): error C2065: 'ballPos': undeclared identifier
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(56,22): error C2065: 'ballVel': undeclared identifier
