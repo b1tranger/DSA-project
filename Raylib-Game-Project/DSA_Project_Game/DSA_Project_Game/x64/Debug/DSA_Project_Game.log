@@ -1,28 +1,25 @@
 ﻿  DSA_Project_Game.cpp
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(127,34): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(127,21): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(127,67): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(127,54): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(127,101): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(127,88): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(127,135): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(127,122): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(173,41): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(173,28): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(174,41): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(174,28): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(175,42): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(175,29): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(176,42): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(176,29): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(238,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(238,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(243,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(243,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(248,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(248,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(288,37): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(288,24): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(29,68): warning C4305: 'argument': truncation from 'double' to 'float'
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(33,68): warning C4305: 'argument': truncation from 'double' to 'float'
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(37,68): warning C4305: 'argument': truncation from 'double' to 'float'
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(154,34): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(154,21): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(154,67): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(154,54): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(154,101): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(154,88): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(154,135): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(154,122): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(200,41): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(200,28): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(201,41): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(201,28): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(202,42): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(202,29): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(203,42): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(203,29): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(314,37): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(314,24): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
   DSA_Project_Game.vcxproj -> E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\x64\Debug\DSA_Project_Game.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
