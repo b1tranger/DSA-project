@@ -16,7 +16,7 @@ demo gameplay: https://youtu.be/21WEimEq-vE
 
 — Unzip vcpkg in System Root (C drive)
 
-— rename (remove -master)
+— rename folder (remove "-master")
 
 — run in powershell (type “powershell” in the explorer address bar):
 
