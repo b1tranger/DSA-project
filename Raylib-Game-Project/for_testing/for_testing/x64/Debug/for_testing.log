@@ -1,10 +1,12 @@
 ﻿  for_testing.cpp
-E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(96,34): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(96,21): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(96,67): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(96,54): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(124,37): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(124,24): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-  for_testing.vcxproj -> E:\Git_WIP\DSA-project\Raylib-Game-Project\for_testing\x64\Debug\for_testing.exe
+D:\git-clones\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(113,34): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(113,21): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(113,67): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(113,54): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(137,37): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(137,24): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(144,41): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\for_testing\for_testing\for_testing.cpp(144,28): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  for_testing.vcxproj -> D:\git-clones\DSA-project\Raylib-Game-Project\for_testing\x64\Debug\for_testing.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

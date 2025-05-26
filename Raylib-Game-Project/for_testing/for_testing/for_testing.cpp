@@ -91,12 +91,30 @@ private:
     Paddle paddle;
     Ball ball;
     int score;
+    //int highScore;
+    //GameState state;
+    int highScore;
+    bool isNewHigh;
+    bool hasHighScore; // to avoid showinf on first time
+    int gameCount = 0;
+
+
 
 public:
-    Game() : paddle(screenWidth, screenHeight), ball(screenWidth, screenHeight), score(0) {
-        InitWindow(screenWidth, screenHeight, "Juggling Game - OOP Version");
+
+    enum GameState {
+        MENU,
+        PLAYING
+    };
+
+    GameState state;
+
+
+    Game() : paddle(screenWidth, screenHeight), ball(screenWidth, screenHeight), score(0), highScore(0), hasHighScore(false), isNewHigh(false), state(MENU) {
+        InitWindow(screenWidth, screenHeight, "2D Juggling Game for DSA Project");
         SetTargetFPS(60);
     }
+
 
     ~Game() {
         CloseWindow();
@@ -112,31 +130,80 @@ public:
     }
 
     void Update(float dt) {
-        paddle.Update(dt, screenWidth);
-        ball.Update(dt);
 
-        if (ball.CheckCollisionWithPaddle(paddle)) {
-            ball.velocity.y *= -1;
-            score++;
-        }
-
-        if (ball.IsOutOfBounds(screenHeight)) {
-            ball.Reset(screenWidth, screenHeight);
+        if (state == MENU && IsKeyPressed(KEY_ENTER)) {
             score = 0;
+            isNewHigh = false;
+            ball.Reset(screenWidth, screenHeight);
+            state = PLAYING;
+        }
+        if (state == MENU) {
+            if (IsKeyPressed(KEY_ENTER)) {
+                state = PLAYING;
+                score = 0;
+                ball.Reset(screenWidth, screenHeight);
+                
+            }
+        }
+        else if (state == PLAYING) {
+            paddle.Update(dt, screenWidth);
+            ball.Update(dt);
+
+            if (ball.CheckCollisionWithPaddle(paddle)) {
+                ball.velocity.y *= -1;
+                score++;
+
+                if (score > highScore) {
+                    highScore = score;
+                    isNewHigh = true;
+                    hasHighScore = true;
+                }
+
+            }
+
+
+            if (ball.IsOutOfBounds(screenHeight)) {
+                state = MENU;  // Go back to menu
+                gameCount++;
+            }
         }
     }
+
 
     void Draw() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        paddle.Draw();
-        ball.Draw();
+        
 
-        DrawText(TextFormat("Score: %d", score), 10, 10, 20, BLACK);
+
+        if (state == MENU) {
+            DrawText("JUGGLING GAME", screenWidth / 2 - 120, screenHeight / 2 - 60, 30, DARKGRAY);
+            DrawText("Press [ENTER] to Start", screenWidth / 2 - 130, screenHeight / 2, 20, GRAY);
+        }
+        else if (state == PLAYING) {
+            paddle.Draw();
+            ball.Draw();
+            // Draw current score
+            DrawText(TextFormat("Score: %d", score), 10, 10, 20, BLACK);
+
+            // Draw high score (changes color and size if it’s a new high)
+            /*int highScoreFontSize = isNewHigh ? 30 : 20;
+            Color highScoreColor = isNewHigh ? RED : DARKGRAY;*/
+            if (hasHighScore && gameCount>0) {
+                int highScoreFontSize = isNewHigh ? 30 : 20;
+                Color highScoreColor = isNewHigh ? RED : DARKGRAY;
+                DrawText(TextFormat("Highest Score: %d", highScore), 10, 40, highScoreFontSize, highScoreColor);
+            }
+
+
+            /*DrawText(TextFormat("High Score: %d", highScore), 10, 40, highScoreFontSize, highScoreColor);*/
+
+        }
 
         EndDrawing();
     }
+
 };
 
 int main() {

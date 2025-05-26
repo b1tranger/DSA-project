@@ -1,7 +1,11 @@
 ﻿  DSA_Project_Game.cpp
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(54,9): error C2065: 'ballVel': undeclared identifier
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(54,22): error C2065: 'gravity': undeclared identifier
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(55,9): error C2065: 'ballPos': undeclared identifier
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(55,22): error C2065: 'ballVel': undeclared identifier
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(56,9): error C2065: 'ballPos': undeclared identifier
-E:\Git_WIP\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(56,22): error C2065: 'ballVel': undeclared identifier
+D:\git-clones\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(96,34): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(96,21): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(96,67): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(96,54): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(124,37): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\git-clones\DSA-project\Raylib-Game-Project\DSA_Project_Game\DSA_Project_Game\DSA_Project_Game.cpp(124,24): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  LINK : D:\git-clones\DSA-project\Raylib-Game-Project\DSA_Project_Game\x64\Debug\DSA_Project_Game.exe not found or not built by the last incremental link; performing full link
+  DSA_Project_Game.vcxproj -> D:\git-clones\DSA-project\Raylib-Game-Project\DSA_Project_Game\x64\Debug\DSA_Project_Game.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
