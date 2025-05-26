@@ -62,7 +62,7 @@ public:
             position.x = GetScreenWidth() - radius;
 
         }
-       
+
 
     }
 
@@ -90,8 +90,8 @@ private:
     const int screenHeight = 600;
     Paddle paddle;
     Ball ball;
-    //Ball ball1;
-    //Ball ball2;
+    Ball ball1;
+    Ball ball2;
     int score;
     //int highScore;
     //GameState state;
@@ -99,11 +99,18 @@ private:
     bool isNewHigh;
     bool hasHighScore; // to avoid showinf on first time
     int gameCount = 0;
-    bool waitForKeyRelease; 
-    
+    bool waitForKeyRelease;
 
+    // checking for new levels
+    bool ball1Active = false;
+    bool ball2Active = false;
+    int level = 1;
+    bool levelUpAvailable = false;
 
-
+    // checking out of bounds
+    bool b1 = false;
+    bool b2 = false;
+    bool b3 = false;
 
 public:
 
@@ -117,10 +124,13 @@ public:
     GameState state;
 
 
-    Game() : paddle(screenWidth, screenHeight), ball(screenWidth, screenHeight), score(0), highScore(0), hasHighScore(false), isNewHigh(false), state(MENU) {
+    Game() : paddle(screenWidth, screenHeight), ball(screenWidth, screenHeight), ball1(screenWidth, screenHeight), ball2(screenWidth, screenHeight), score(0), highScore(0), hasHighScore(false), isNewHigh(false), state(MENU) {
         InitWindow(screenWidth, screenHeight, "2D Juggling Game for DSA Project");
         SetTargetFPS(60);
         waitForKeyRelease = false;
+
+        ball1.position.y = 100;  // level 1 height
+        ball2.position.y = 50;   // level 2 height
 
     }
 
@@ -140,14 +150,14 @@ public:
 
     void Update(float dt) {
 
-       /* if (state == MENU && IsKeyPressed(KEY_ENTER)) {
-            score = 0;
-            isNewHigh = false;
-            ball.Reset(screenWidth, screenHeight);
-            state = PLAYING;
-        }*/
-        // to not start playing again instantly
-        // go to menu first
+        /* if (state == MENU && IsKeyPressed(KEY_ENTER)) {
+             score = 0;
+             isNewHigh = false;
+             ball.Reset(screenWidth, screenHeight);
+             state = PLAYING;
+         }*/
+         // to not start playing again instantly
+         // go to menu first
         if (waitForKeyRelease) {
             if (!IsKeyDown(KEY_ENTER)) {
                 waitForKeyRelease = false; // key released
@@ -161,7 +171,16 @@ public:
                 //state = MENU;
                 score = 0;
                 ball.Reset(screenWidth, screenHeight);
-                
+                ball.Reset(screenWidth, screenHeight);
+                ball1.Reset(screenWidth, screenHeight);
+                ball2.Reset(screenWidth, screenHeight);
+                ball1.position.y = 100;
+                ball2.position.y = 50;
+
+                ball1Active = false;
+                ball2Active = false;
+                level = 1;
+
             }
         }
         else if (state == PLAYING) {
@@ -170,6 +189,14 @@ public:
 
             if (ball.CheckCollisionWithPaddle(paddle)) {
                 ball.velocity.y *= -1;
+                if (score > highScore) {
+                    highScore = score;
+                    isNewHigh = true;
+                    hasHighScore = true;
+                }
+                if (b1 == true) {
+                    return;
+                }
                 score++;
 
                 if (score > highScore) {
@@ -179,17 +206,105 @@ public:
                 }
 
             }
+            //new level balls
 
+            /*if (ball.IsOutOfBounds(screenHeight)) {
+ball.Reset(screenWidth, screenHeight);
+            }*/
 
-            if (ball.IsOutOfBounds(screenHeight)) {
+            if (ball1Active) {
+                ball1.Update(dt);
+                if (ball1.CheckCollisionWithPaddle(paddle)) {
+                    ball1.velocity.y *= -1;
+                    if (b2 == true) {
+                        return;
+                    }
+                    score++;
+                    
+                }
+
+            }
+
+            if (ball2Active) {
+                ball2.Update(dt);
+                if (ball2.CheckCollisionWithPaddle(paddle)) {
+                    ball2.velocity.y *= -1;
+                    score++;
+                }
+                if (b3 == true) {
+                    return;
+                }
+            }
+
+            if (ball.IsOutOfBounds(screenHeight) || ball1.IsOutOfBounds(screenHeight) || ball2.IsOutOfBounds(screenHeight)) {
                 /*state = MENU;*/  // Go back to menu
-                state = GAME_OVER;
+                if (b1 == true || b2 == true || b3 == true) {
+                    state = GAME_OVER;
+                    
+                }
+                /*else if (b1 == true && !ball1Active && !ball2Active) {
+                    state = GAME_OVER;
+                }
+                else if (b1 == true && b2 == true && !ball2Active) {
+                    state = GAME_OVER;
+                }*/
+
+                if (ball.IsOutOfBounds(screenHeight)) {
+                    b1 = true;
+                    ball.Reset(screenWidth * 5, screenHeight * 5);
+                    ball.velocity.y = 0;
+                    ball.velocity.x = 0;
+                }
+                if (ball1.IsOutOfBounds(screenHeight)) {
+                    b2 = true;
+                    ball1.Reset(screenWidth * 5, screenHeight * 5);
+                    ball1.velocity.y = 0;
+                    ball1.velocity.x = 0;
+                }
+                if (ball2.IsOutOfBounds(screenHeight)) {
+                    b3 = true;
+                    ball2.Reset(screenWidth * 5, screenHeight * 5);
+                    ball2.velocity.y = 0;
+                    ball2.velocity.x = 0;
+                }
+
+
+
                 gameCount++;
             }
+
+            if (score % 5 == 0 && score > 0) {
+                if (score >= 5 && !ball1Active) {
+                    levelUpAvailable = true;
+                }
+                else if (score >= 10 && !ball2Active) {
+                    levelUpAvailable = true;
+                }
+                /* if ((score == 5 && !ball1Active) || (score == 10 && !ball2Active)) {
+                     levelUpAvailable = true;
+                 }*/
+            }
+
+            if (levelUpAvailable && IsKeyPressed(KEY_SPACE)) {
+                if (!ball1Active) {
+                    ball1Active = true;
+                    level++;
+                    levelUpAvailable = false;
+                }
+                else if (!ball2Active) {
+                    ball2Active = true;
+                    level++;
+                    levelUpAvailable = false;
+                }
+            }
+
+
+
         }
         else if (state == GAME_OVER && IsKeyPressed(KEY_ENTER)) {
             score = 0;
             isNewHigh = false;
+            b1 = b2 = b3 = false;
             ball.Reset(screenWidth, screenHeight);
             state = MENU;
         }
@@ -200,29 +315,39 @@ public:
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        
+
 
 
         if (state == MENU) {
             DrawText("JUGGLING GAME", screenWidth / 2 - 240, screenHeight / 2 - 120, 60, DARKGRAY);
-            DrawText("Press [ENTER] to Start", screenWidth / 2 - 120, screenHeight / 2+30, 20, GRAY);
+            DrawText("Press [ENTER] to Start", screenWidth / 2 - 120, screenHeight / 2 + 30, 20, GRAY);
 
-            DrawText("Prototype for DSA Project | made by b1tranger using Raylib", screenWidth - 780, screenHeight -40, 15, GRAY);
+            DrawText("Prototype for DSA Project | made by b1tranger using Raylib", screenWidth - 780, screenHeight - 40, 15, GRAY);
 
-            if (gameCount>0) {
-                DrawText(TextFormat("Current Record: %d", highScore), screenWidth / 2 - 130, screenHeight / 2-20, 30, GRAY);
+            if (gameCount > 0) {
+                DrawText(TextFormat("Current Record: %d", highScore), screenWidth / 2 - 130, screenHeight / 2 - 20, 30, GRAY);
             }
         }
         else if (state == PLAYING) {
             paddle.Draw();
             ball.Draw();
+            if (ball1Active) ball1.Draw(); // new balls
+            if (ball2Active) ball2.Draw();
             // Draw current score
             DrawText(TextFormat("Score: %d", score), 10, 10, 20, BLACK);
+
+            // level show
+            DrawText(TextFormat("Level: %d", level), 10, 70, 20, DARKGRAY);
+
+            // level up prompt
+            if (levelUpAvailable) {
+                DrawText("Level Up Available! Press [SPACE]", screenWidth / 2 - 160, 20, 20, ORANGE);
+            }
 
             // Draw high score (changes color and size if it’s a new high)
             /*int highScoreFontSize = isNewHigh ? 30 : 20;
             Color highScoreColor = isNewHigh ? RED : DARKGRAY;*/
-            if (hasHighScore && gameCount>0) {
+            if (hasHighScore && gameCount > 0) {
                 int highScoreFontSize = isNewHigh ? 30 : 20;
                 Color highScoreColor = isNewHigh ? RED : DARKGRAY;
                 DrawText(TextFormat("Highest Score: %d", highScore), 10, 40, highScoreFontSize, highScoreColor);
