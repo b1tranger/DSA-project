@@ -90,13 +90,40 @@ private:
     const int screenHeight = 600;
     Paddle paddle;
     Ball ball;
+    //Ball ball1;
+    //Ball ball2;
     int score;
+    //int highScore;
+    //GameState state;
+    int highScore;
+    bool isNewHigh;
+    bool hasHighScore; // to avoid showinf on first time
+    int gameCount = 0;
+    bool waitForKeyRelease;
+
+
+
+
 
 public:
-    Game() : paddle(screenWidth, screenHeight), ball(screenWidth, screenHeight), score(0) {
-        InitWindow(screenWidth, screenHeight, "Juggling Game - OOP Version");
+
+    enum GameState {
+        MENU,
+        PLAYING,
+        GAME_OVER
+    };
+
+
+    GameState state;
+
+
+    Game() : paddle(screenWidth, screenHeight), ball(screenWidth, screenHeight), score(0), highScore(0), hasHighScore(false), isNewHigh(false), state(MENU) {
+        InitWindow(screenWidth, screenHeight, "2D Juggling Game for DSA Project");
         SetTargetFPS(60);
+        waitForKeyRelease = false;
+
     }
+
 
     ~Game() {
         CloseWindow();
@@ -112,31 +139,114 @@ public:
     }
 
     void Update(float dt) {
-        paddle.Update(dt, screenWidth);
-        ball.Update(dt);
 
-        if (ball.CheckCollisionWithPaddle(paddle)) {
-            ball.velocity.y *= -1;
-            score++;
+        /* if (state == MENU && IsKeyPressed(KEY_ENTER)) {
+             score = 0;
+             isNewHigh = false;
+             ball.Reset(screenWidth, screenHeight);
+             state = PLAYING;
+         }*/
+         // to not start playing again instantly
+         // go to menu first
+        if (waitForKeyRelease) {
+            if (!IsKeyDown(KEY_ENTER)) {
+                waitForKeyRelease = false; // key released
+            }
+            return; // skip rest of update
         }
 
-        if (ball.IsOutOfBounds(screenHeight)) {
-            ball.Reset(screenWidth, screenHeight);
+        if (state == MENU) {
+            if (IsKeyPressed(KEY_ENTER)) {
+                state = PLAYING;
+                //state = MENU;
+                score = 0;
+                ball.Reset(screenWidth, screenHeight);
+
+            }
+        }
+        else if (state == PLAYING) {
+            paddle.Update(dt, screenWidth);
+            ball.Update(dt);
+
+            if (ball.CheckCollisionWithPaddle(paddle)) {
+                ball.velocity.y *= -1;
+                score++;
+
+                if (score > highScore) {
+                    highScore = score;
+                    isNewHigh = true;
+                    hasHighScore = true;
+                }
+
+            }
+
+
+            if (ball.IsOutOfBounds(screenHeight)) {
+                /*state = MENU;*/  // Go back to menu
+                state = GAME_OVER;
+                gameCount++;
+            }
+        }
+        else if (state == GAME_OVER && IsKeyPressed(KEY_ENTER)) {
             score = 0;
+            isNewHigh = false;
+            ball.Reset(screenWidth, screenHeight);
+            state = MENU;
         }
     }
+
 
     void Draw() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        paddle.Draw();
-        ball.Draw();
 
-        DrawText(TextFormat("Score: %d", score), 10, 10, 20, BLACK);
+
+
+        if (state == MENU) {
+            DrawText("JUGGLING GAME", screenWidth / 2 - 240, screenHeight / 2 - 120, 60, DARKGRAY);
+            DrawText("Press [ENTER] to Start", screenWidth / 2 - 120, screenHeight / 2 + 30, 20, GRAY);
+
+            DrawText("Prototype for DSA Project | made by b1tranger using Raylib", screenWidth - 780, screenHeight - 40, 15, GRAY);
+
+            if (gameCount > 0) {
+                DrawText(TextFormat("Current Record: %d", highScore), screenWidth / 2 - 130, screenHeight / 2 - 20, 30, GRAY);
+            }
+        }
+        else if (state == PLAYING) {
+            paddle.Draw();
+            ball.Draw();
+            // Draw current score
+            DrawText(TextFormat("Score: %d", score), 10, 10, 20, BLACK);
+
+            // Draw high score (changes color and size if it’s a new high)
+            /*int highScoreFontSize = isNewHigh ? 30 : 20;
+            Color highScoreColor = isNewHigh ? RED : DARKGRAY;*/
+            if (hasHighScore && gameCount > 0) {
+                int highScoreFontSize = isNewHigh ? 30 : 20;
+                Color highScoreColor = isNewHigh ? RED : DARKGRAY;
+                DrawText(TextFormat("Highest Score: %d", highScore), 10, 40, highScoreFontSize, highScoreColor);
+            }
+
+
+            /*DrawText(TextFormat("High Score: %d", highScore), 10, 40, highScoreFontSize, highScoreColor);*/
+
+        }
+        else if (state == GAME_OVER) {
+            DrawText("GAME OVER", screenWidth / 2 - 100, screenHeight / 2 - 60, 40, RED);
+            DrawText(TextFormat("Score: %d", score), screenWidth / 2 - 60, screenHeight / 2, 30, BLACK);
+
+            if (isNewHigh) {
+                DrawText("New High Score!", screenWidth / 2 - 80, screenHeight / 2 + 40, 20, RED);
+            }
+
+            DrawText("Press [ENTER] to return to Menu", screenWidth / 2 - 160, screenHeight / 2 + 80, 20, DARKGRAY);
+        }
+
 
         EndDrawing();
     }
+
 };
 
 int main() {

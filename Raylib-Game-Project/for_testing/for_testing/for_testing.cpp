@@ -90,6 +90,8 @@ private:
     const int screenHeight = 600;
     Paddle paddle;
     Ball ball;
+    //Ball ball1;
+    //Ball ball2;
     int score;
     //int highScore;
     //GameState state;
@@ -98,6 +100,7 @@ private:
     bool hasHighScore; // to avoid showinf on first time
     int gameCount = 0;
     bool waitForKeyRelease; 
+    
 
 
 
@@ -201,13 +204,13 @@ public:
 
 
         if (state == MENU) {
-            DrawText("JUGGLING GAME", screenWidth / 2 - 120, screenHeight / 2 - 60, 30, DARKGRAY);
+            DrawText("JUGGLING GAME", screenWidth / 2 - 240, screenHeight / 2 - 120, 60, DARKGRAY);
             DrawText("Press [ENTER] to Start", screenWidth / 2 - 120, screenHeight / 2+30, 20, GRAY);
 
-            
+            DrawText("Prototype for DSA Project | made by b1tranger using Raylib", screenWidth - 780, screenHeight -40, 15, GRAY);
 
             if (gameCount>0) {
-                DrawText(TextFormat("Score: %d", score), screenWidth / 2 - 60, screenHeight / 2-20, 30, GRAY);
+                DrawText(TextFormat("Current Record: %d", highScore), screenWidth / 2 - 130, screenHeight / 2-20, 30, GRAY);
             }
         }
         else if (state == PLAYING) {
