@@ -1,5 +1,10 @@
 #include "raylib.h"
 
+Color Green = Color{ 38, 185, 154, 255 };
+Color Dark_Green = Color{ 20, 160, 133, 255 };
+Color Light_Green = Color{ 129, 204, 184, 255 };
+Color Yellow = Color{ 243, 213, 91, 255 };
+
 // Paddle Class
 class Paddle {
 public:
@@ -102,7 +107,7 @@ private:
     bool waitForKeyRelease;
 
     // checking for new levels
-    bool ball1Active = false; 
+    bool ball1Active = false;
     bool ball2Active = false;
     int level = 1;
     bool levelUpAvailable = false;
@@ -111,6 +116,9 @@ private:
     bool b1 = false;
     bool b2 = false;
     bool b3 = false;
+
+    // resetting high score highlight
+    //bool HighShown = false;
 
 public:
 
@@ -187,8 +195,12 @@ public:
             paddle.Update(dt, screenWidth);
             ball.Update(dt);
 
-            if (ball.CheckCollisionWithPaddle(paddle)) {
+            if (!ball.IsOutOfBounds(screenHeight) && ball.CheckCollisionWithPaddle(paddle)) {
                 ball.velocity.y *= -1;
+
+                /*if (b1 == true) {
+                    return;
+                }*/
                 score++;
 
                 if (score > highScore) {
@@ -200,31 +212,44 @@ public:
             }
             //new level balls
 
-            /*if (ball.IsOutOfBounds(screenHeight)) {
-ball.Reset(screenWidth, screenHeight);
-            }*/
-
             if (ball1Active) {
                 ball1.Update(dt);
-                if (ball1.CheckCollisionWithPaddle(paddle)) {
+                if (!ball1.IsOutOfBounds(screenHeight) && ball1.CheckCollisionWithPaddle(paddle)) {
                     ball1.velocity.y *= -1;
+                    /*if (b2 == true) {
+                        return;
+                    }*/
                     score++;
+                    if (score > highScore) {
+                        highScore = score;
+                        isNewHigh = true;
+                        hasHighScore = true;
+                    }
                 }
-                
+
             }
 
             if (ball2Active) {
                 ball2.Update(dt);
-                if (ball2.CheckCollisionWithPaddle(paddle)) {
+                if (!ball2.IsOutOfBounds(screenHeight) && ball2.CheckCollisionWithPaddle(paddle)) {
                     ball2.velocity.y *= -1;
                     score++;
+                    if (score > highScore) {
+                        highScore = score;
+                        isNewHigh = true;
+                        hasHighScore = true;
+                    }
                 }
+                /*if (b3 == true) {
+                    return;
+                }*/
             }
 
             if (ball.IsOutOfBounds(screenHeight) || ball1.IsOutOfBounds(screenHeight) || ball2.IsOutOfBounds(screenHeight)) {
                 /*state = MENU;*/  // Go back to menu
-                if (b1 == true && b2 == true && b3 == true) {
+                if (ball.IsOutOfBounds(screenHeight) || ball1.IsOutOfBounds(screenHeight) || ball2.IsOutOfBounds(screenHeight)) {
                     state = GAME_OVER;
+
                 }
                 /*else if (b1 == true && !ball1Active && !ball2Active) {
                     state = GAME_OVER;
@@ -233,24 +258,27 @@ ball.Reset(screenWidth, screenHeight);
                     state = GAME_OVER;
                 }*/
 
-                if (ball.IsOutOfBounds(screenHeight)) {
+                /*if (ball.IsOutOfBounds(screenHeight)) {
                     b1 = true;
                     ball.Reset(screenWidth * 5, screenHeight * 5);
                     ball.velocity.y = 0;
+                    ball.velocity.x = 0;
                 }
                 if (ball1.IsOutOfBounds(screenHeight)) {
                     b2 = true;
-                    ball1.Reset(screenWidth*5, screenHeight*5);
+                    ball1.Reset(screenWidth * 5, screenHeight * 5);
                     ball1.velocity.y = 0;
+                    ball1.velocity.x = 0;
                 }
                 if (ball2.IsOutOfBounds(screenHeight)) {
                     b3 = true;
                     ball2.Reset(screenWidth * 5, screenHeight * 5);
                     ball2.velocity.y = 0;
-                }
+                    ball2.velocity.x = 0;
+                }*/
 
 
-                
+
                 gameCount++;
             }
 
@@ -261,9 +289,9 @@ ball.Reset(screenWidth, screenHeight);
                 else if (score >= 10 && !ball2Active) {
                     levelUpAvailable = true;
                 }
-               /* if ((score == 5 && !ball1Active) || (score == 10 && !ball2Active)) {
-                    levelUpAvailable = true;
-                }*/
+                /* if ((score == 5 && !ball1Active) || (score == 10 && !ball2Active)) {
+                     levelUpAvailable = true;
+                 }*/
             }
 
             if (levelUpAvailable && IsKeyPressed(KEY_SPACE)) {
@@ -285,6 +313,8 @@ ball.Reset(screenWidth, screenHeight);
         else if (state == GAME_OVER && IsKeyPressed(KEY_ENTER)) {
             score = 0;
             isNewHigh = false;
+            b1 = b2 = b3 = false;
+            /*HighShown = false;*/ // reset highlight
             ball.Reset(screenWidth, screenHeight);
             state = MENU;
         }
@@ -329,8 +359,10 @@ ball.Reset(screenWidth, screenHeight);
             Color highScoreColor = isNewHigh ? RED : DARKGRAY;*/
             if (hasHighScore && gameCount > 0) {
                 int highScoreFontSize = isNewHigh ? 30 : 20;
+                int PositionX = isNewHigh ? 300 : 10;
                 Color highScoreColor = isNewHigh ? RED : DARKGRAY;
-                DrawText(TextFormat("Highest Score: %d", highScore), 10, 40, highScoreFontSize, highScoreColor);
+                DrawText(TextFormat("Highest Score: %d", highScore), PositionX, 40, highScoreFontSize, highScoreColor);
+
             }
 
 
