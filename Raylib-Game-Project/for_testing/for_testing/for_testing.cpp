@@ -97,6 +97,8 @@ private:
     bool isNewHigh;
     bool hasHighScore; // to avoid showinf on first time
     int gameCount = 0;
+    bool waitForKeyRelease; 
+
 
 
 
@@ -104,8 +106,10 @@ public:
 
     enum GameState {
         MENU,
-        PLAYING
+        PLAYING,
+        GAME_OVER
     };
+
 
     GameState state;
 
@@ -113,6 +117,8 @@ public:
     Game() : paddle(screenWidth, screenHeight), ball(screenWidth, screenHeight), score(0), highScore(0), hasHighScore(false), isNewHigh(false), state(MENU) {
         InitWindow(screenWidth, screenHeight, "2D Juggling Game for DSA Project");
         SetTargetFPS(60);
+        waitForKeyRelease = false;
+
     }
 
 
@@ -131,15 +137,25 @@ public:
 
     void Update(float dt) {
 
-        if (state == MENU && IsKeyPressed(KEY_ENTER)) {
+       /* if (state == MENU && IsKeyPressed(KEY_ENTER)) {
             score = 0;
             isNewHigh = false;
             ball.Reset(screenWidth, screenHeight);
             state = PLAYING;
+        }*/
+        // to not start playing again instantly
+        // go to menu first
+        if (waitForKeyRelease) {
+            if (!IsKeyDown(KEY_ENTER)) {
+                waitForKeyRelease = false; // key released
+            }
+            return; // skip rest of update
         }
+
         if (state == MENU) {
             if (IsKeyPressed(KEY_ENTER)) {
                 state = PLAYING;
+                //state = MENU;
                 score = 0;
                 ball.Reset(screenWidth, screenHeight);
                 
@@ -163,9 +179,16 @@ public:
 
 
             if (ball.IsOutOfBounds(screenHeight)) {
-                state = MENU;  // Go back to menu
+                /*state = MENU;*/  // Go back to menu
+                state = GAME_OVER;
                 gameCount++;
             }
+        }
+        else if (state == GAME_OVER && IsKeyPressed(KEY_ENTER)) {
+            score = 0;
+            isNewHigh = false;
+            ball.Reset(screenWidth, screenHeight);
+            state = MENU;
         }
     }
 
@@ -179,7 +202,13 @@ public:
 
         if (state == MENU) {
             DrawText("JUGGLING GAME", screenWidth / 2 - 120, screenHeight / 2 - 60, 30, DARKGRAY);
-            DrawText("Press [ENTER] to Start", screenWidth / 2 - 130, screenHeight / 2, 20, GRAY);
+            DrawText("Press [ENTER] to Start", screenWidth / 2 - 120, screenHeight / 2+30, 20, GRAY);
+
+            
+
+            if (gameCount>0) {
+                DrawText(TextFormat("Score: %d", score), screenWidth / 2 - 60, screenHeight / 2-20, 30, GRAY);
+            }
         }
         else if (state == PLAYING) {
             paddle.Draw();
@@ -200,6 +229,17 @@ public:
             /*DrawText(TextFormat("High Score: %d", highScore), 10, 40, highScoreFontSize, highScoreColor);*/
 
         }
+        else if (state == GAME_OVER) {
+            DrawText("GAME OVER", screenWidth / 2 - 100, screenHeight / 2 - 60, 40, RED);
+            DrawText(TextFormat("Score: %d", score), screenWidth / 2 - 60, screenHeight / 2, 30, BLACK);
+
+            if (isNewHigh) {
+                DrawText("New High Score!", screenWidth / 2 - 80, screenHeight / 2 + 40, 20, RED);
+            }
+
+            DrawText("Press [ENTER] to return to Menu", screenWidth / 2 - 160, screenHeight / 2 + 80, 20, DARKGRAY);
+        }
+
 
         EndDrawing();
     }
