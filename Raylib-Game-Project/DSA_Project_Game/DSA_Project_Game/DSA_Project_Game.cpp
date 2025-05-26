@@ -1,3 +1,5 @@
+
+
 #include "raylib.h"
 
 // Paddle Class
@@ -31,11 +33,9 @@ public:
         }
         else if (level == 2) {
             DrawRectangleRounded(Rectangle{ x, y, width, height }, 0.8, 0, DARKGRAY);
-            //DrawRectangle((int)x, (int)y, (int)width, (int)height, DARKGRAY);
         }
         else if (level == 3) {
             DrawRectangleRounded(Rectangle{ x, y, width, height }, 0.8, 0, YELLOW);
-            //DrawRectangle((int)x, (int)y, (int)width, (int)height, YELLOW);
         }
 
     }
@@ -177,14 +177,6 @@ public:
 
     void Update(float dt) {
 
-        /* if (state == MENU && IsKeyPressed(KEY_ENTER)) {
-             score = 0;
-             isNewHigh = false;
-             ball.Reset(screenWidth, screenHeight);
-             state = PLAYING;
-         }*/
-         // to not start playing again instantly
-         // go to menu first
         if (waitForKeyRelease) {
             if (!IsKeyDown(KEY_ENTER)) {
                 waitForKeyRelease = false; // key released
@@ -216,10 +208,6 @@ public:
 
             if (!ball.IsOutOfBounds(screenHeight) && ball.CheckCollisionWithPaddle(paddle)) {
                 ball.velocity.y *= -1;
-
-                /*if (b1 == true) {
-                    return;
-                }*/
                 score++;
 
                 if (score > highScore) {
@@ -235,9 +223,6 @@ public:
                 ball1.Update(dt);
                 if (!ball1.IsOutOfBounds(screenHeight) && ball1.CheckCollisionWithPaddle(paddle)) {
                     ball1.velocity.y *= -1;
-                    /*if (b2 == true) {
-                        return;
-                    }*/
                     score++;
                     if (score > highScore) {
                         highScore = score;
@@ -259,9 +244,6 @@ public:
                         hasHighScore = true;
                     }
                 }
-                /*if (b3 == true) {
-                    return;
-                }*/
             }
 
             if (ball.IsOutOfBounds(screenHeight) || ball1.IsOutOfBounds(screenHeight) || ball2.IsOutOfBounds(screenHeight)) {
@@ -284,9 +266,6 @@ public:
                 else if (score >= 10 && !ball2Active) {
                     levelUpAvailable = true;
                 }
-                /* if ((score == 5 && !ball1Active) || (score == 10 && !ball2Active)) {
-                     levelUpAvailable = true;
-                 }*/
             }
 
             if (levelUpAvailable && IsKeyPressed(KEY_SPACE)) {
@@ -320,9 +299,6 @@ public:
     void Draw() {
         BeginDrawing();
 
-        //ClearBackground(RAYWHITE);
-
-
         // background color
 
         if (level == 1) {
@@ -335,9 +311,6 @@ public:
         else if (level == 3) {
             ClearBackground(DARKGRAY);
         }
-
-
-
 
         if (state == MENU) {
             DrawText("JUGGLING GAME", screenWidth / 2 - 240, screenHeight / 2 - 120, 60, DARKGRAY);
